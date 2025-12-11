@@ -1,3 +1,3 @@
-module github.com/SergioViacheslaev/CurrencyExchanger
+module github.com/viacheslaev/CurrencyExchanger
 
 go 1.25

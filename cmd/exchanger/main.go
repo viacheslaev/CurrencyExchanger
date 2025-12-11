@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/SergioViacheslaev/CurrencyExchanger/pkg/utils"
+	"github.com/viacheslaev/CurrencyExchanger/pkg/utils"
 )
 
 func main() {
