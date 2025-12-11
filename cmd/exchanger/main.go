@@ -2,15 +2,12 @@ package main
 
 import (
 	"fmt"
-	"runtime"
+
+	"github.com/SergioViacheslaev/CurrencyExchanger/pkg/utils"
 )
 
 func main() {
 
 	fmt.Println("Hello from CurrencyExchanger")
-	PrintGoVersion()
-}
-
-func PrintGoVersion() {
-	fmt.Println("Go version:", runtime.Version())
+	utils.PrintGoVersion()
 }
