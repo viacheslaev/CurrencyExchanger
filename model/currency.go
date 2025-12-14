@@ -1,8 +1,8 @@
 package model
 
 type CBRResponse struct {
-	Date   string              `json:"Date"`
-	Valute map[string]Currency `json:"Valute"`
+	Date   string                    `json:"Date"`
+	Valute map[CurrencyCode]Currency `json:"Valute"`
 }
 
 type Currency struct {
