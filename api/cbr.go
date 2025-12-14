@@ -29,7 +29,7 @@ func FetchRates(ctx context.Context) (*model.CBRResponse, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("CBR API error: %s", resp.Status)
+		return nil, fmt.Errorf("CBR API error: status %d", resp.StatusCode)
 	}
 
 	var data model.CBRResponse

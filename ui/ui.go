@@ -53,21 +53,22 @@ func currentRatesTable() {
 	}
 
 	fmt.Println("\nКурсы валют по данным ЦБ РФ,", utils.FormatCBRDate(data.Date))
-	fmt.Println("---------------------------------------------------------------------")
-	fmt.Printf("%-5s %-25s %-12s %-12s\n", "CODE", "NAME", "TODAY", "YESTERDAY")
-	fmt.Println("---------------------------------------------------------------------")
+	fmt.Println("----------------------------------------------------------")
+	fmt.Printf("%-5s %-20s %-8s %-8s %-8s\n", "CODE", "NAME", "NOMINAL", "TODAY", "YESTERDAY")
+	fmt.Println("----------------------------------------------------------")
 
 	for _, code := range model.DefaultCodes() {
-		if c, ok := data.Valute[code]; ok {
+		if currency, ok := data.Valute[code]; ok {
 			fmt.Printf(
-				"%-5s %-25s %-12.2f %-12.2f\n",
-				c.CharCode,
-				c.Name,
-				c.Value,
-				c.Previous,
+				"%-5s %-20s %-8d %-8.2f %-8.2f\n",
+				currency.CharCode,
+				currency.Name,
+				currency.Nominal,
+				currency.Value,
+				currency.Previous,
 			)
 		}
 	}
 
-	fmt.Println("---------------------------------------------------------------------")
+	fmt.Println("----------------------------------------------------------")
 }
