@@ -7,17 +7,16 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/viacheslaev/CurrencyExchanger/config"
 	"github.com/viacheslaev/CurrencyExchanger/model"
 )
-
-const cbrURL = "https://www.cbr-xml-daily.ru/daily_json.js"
 
 var client = &http.Client{
 	Timeout: 5 * time.Second,
 }
 
 func FetchRates(ctx context.Context) (*model.CBRResponse, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, cbrURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, config.CBRUrl(), nil)
 	if err != nil {
 		return nil, err
 	}
