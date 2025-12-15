@@ -1,4 +1,4 @@
-package api
+package service
 
 import (
 	"context"
@@ -12,14 +12,14 @@ import (
 
 const cbrURL = "https://www.cbr-xml-daily.ru/daily_json.js"
 
+var client = &http.Client{
+	Timeout: 5 * time.Second,
+}
+
 func FetchRates(ctx context.Context) (*model.CBRResponse, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, cbrURL, nil)
 	if err != nil {
 		return nil, err
-	}
-
-	client := &http.Client{
-		Timeout: 5 * time.Second,
 	}
 
 	resp, err := client.Do(req)

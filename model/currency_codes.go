@@ -8,6 +8,7 @@ const (
 	CNY CurrencyCode = "CNY"
 	BYN CurrencyCode = "BYN"
 	INR CurrencyCode = "INR"
+	RUB CurrencyCode = "RUB"
 )
 
 // DefaultCodes returns currency codes for UI menu in default order
