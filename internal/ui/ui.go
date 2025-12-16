@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/viacheslaev/CurrencyExchanger/model"
-	"github.com/viacheslaev/CurrencyExchanger/service"
-	"github.com/viacheslaev/CurrencyExchanger/utils"
+	service2 "github.com/viacheslaev/CurrencyExchanger/internal/service"
+	"github.com/viacheslaev/CurrencyExchanger/model/currency"
+	"github.com/viacheslaev/CurrencyExchanger/utils/format"
 )
 
 func Start() {
@@ -19,7 +19,7 @@ func Start() {
 		case "1":
 			currentRatesTable()
 		case "2":
-			service.ExchangeCurrency()
+			service2.ExchangeCurrency()
 		case "0":
 			fmt.Println("Bye 👋")
 			return
@@ -45,26 +45,26 @@ func currentRatesTable() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	data, err := service.FetchRates(ctx)
+	data, err := service2.FetchRates(ctx)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
 
-	fmt.Println("\nКурсы валют по данным ЦБ РФ,", utils.FormatCBRDate(data.Date))
+	fmt.Println("\nКурсы валют по данным ЦБ РФ,", format.FormatCBRDate(data.Date))
 	fmt.Println("----------------------------------------------------------")
 	fmt.Printf("%-5s %-20s %-8s %-8s %-8s\n", "CODE", "NAME", "NOMINAL", "TODAY", "YESTERDAY")
 	fmt.Println("----------------------------------------------------------")
 
-	for _, code := range model.DefaultCodes() {
-		if currency, ok := data.Valute[code]; ok {
+	for _, code := range currency.DefaultCodes() {
+		if valute, ok := data.Valute[code]; ok {
 			fmt.Printf(
 				"%-5s %-20s %-8d %-8.2f %-8.2f\n",
-				currency.CharCode,
-				currency.Name,
-				currency.Nominal,
-				currency.Value,
-				currency.Previous,
+				valute.CharCode,
+				valute.Name,
+				valute.Nominal,
+				valute.Value,
+				valute.Previous,
 			)
 		}
 	}

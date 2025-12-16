@@ -7,15 +7,15 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/viacheslaev/CurrencyExchanger/config"
-	"github.com/viacheslaev/CurrencyExchanger/model"
+	"github.com/viacheslaev/CurrencyExchanger/internal/config"
+	"github.com/viacheslaev/CurrencyExchanger/model/currency"
 )
 
 var client = &http.Client{
 	Timeout: 5 * time.Second,
 }
 
-func FetchRates(ctx context.Context) (*model.CBRResponse, error) {
+func FetchRates(ctx context.Context) (*currency.CBRResponse, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, config.CBRUrl(), nil)
 	if err != nil {
 		return nil, err
@@ -31,7 +31,7 @@ func FetchRates(ctx context.Context) (*model.CBRResponse, error) {
 		return nil, fmt.Errorf("CBR API error: status %d", resp.StatusCode)
 	}
 
-	var data model.CBRResponse
+	var data currency.CBRResponse
 	if err := json.NewDecoder(resp.Body).Decode(&data); err != nil {
 		return nil, err
 	}

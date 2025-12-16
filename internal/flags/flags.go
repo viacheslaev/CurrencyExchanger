@@ -1,24 +1,15 @@
-package utils
+package flags
 
 import (
 	"flag"
 	"fmt"
 	"os"
-	"time"
 )
 
 const appVersion = "1.0"
 
-func FormatCBRDate(rawDate string) string {
-	t, err := time.Parse(time.RFC3339, rawDate)
-	if err != nil {
-		return rawDate
-	}
-
-	return t.Format("02 January 2006 15:04")
-}
-
-func HandleFlags() {
+// Handle parses command-line flags, for example -version.
+func Handle() {
 	showVersion := flag.Bool("version", false, "Show application version")
 	flag.Parse()
 

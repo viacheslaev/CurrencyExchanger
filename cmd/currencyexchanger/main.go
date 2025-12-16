@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/viacheslaev/CurrencyExchanger/ui"
-	"github.com/viacheslaev/CurrencyExchanger/utils"
+	"github.com/viacheslaev/CurrencyExchanger/internal/flags"
+	"github.com/viacheslaev/CurrencyExchanger/internal/ui"
 )
 
 func init() {
-	utils.HandleFlags()
+	flags.Handle()
 }
 
 func main() {
