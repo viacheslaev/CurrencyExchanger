@@ -103,5 +103,5 @@ func fetchRatesWithTimeout() (*currency.CBRResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	return FetchRates(ctx)
+	return FetchRatesCached(ctx)
 }

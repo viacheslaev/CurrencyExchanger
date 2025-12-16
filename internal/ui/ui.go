@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	service2 "github.com/viacheslaev/CurrencyExchanger/internal/service"
+	"github.com/viacheslaev/CurrencyExchanger/internal/service"
 	"github.com/viacheslaev/CurrencyExchanger/model/currency"
 	"github.com/viacheslaev/CurrencyExchanger/utils/format"
 )
@@ -19,7 +19,7 @@ func Start() {
 		case "1":
 			currentRatesTable()
 		case "2":
-			service2.ExchangeCurrency()
+			service.ExchangeCurrency()
 		case "0":
 			fmt.Println("Bye 👋")
 			return
@@ -45,7 +45,7 @@ func currentRatesTable() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	data, err := service2.FetchRates(ctx)
+	data, err := service.FetchRatesCached(ctx)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
