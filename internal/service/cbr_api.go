@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"math"
 	"net/http"
 	"time"
 
@@ -36,5 +37,16 @@ func FetchRates(ctx context.Context) (*currency.CBRResponse, error) {
 		return nil, err
 	}
 
+	normalizeRates(&data)
+
 	return &data, nil
+}
+
+// normalizeRates rounds currency rates in CBRResponse ( 79.4494999 -> 79.45 )
+func normalizeRates(data *currency.CBRResponse) {
+	for code, cur := range data.Valute {
+		cur.Value = math.Round(cur.Value*100) / 100
+		cur.Previous = math.Round(cur.Previous*100) / 100
+		data.Valute[code] = cur
+	}
 }
