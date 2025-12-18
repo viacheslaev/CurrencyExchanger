@@ -8,31 +8,6 @@
 - Currency conversion
 - In-memory rates cache
 
-## Project Structure
-
-```
-CurrencyExchanger/
-├── go.mod
-├── api/
-│   └── cbr/
-│       ├── cbr_api.go          # CBR API client
-│       ├── exchange.go         # Currency exchange logic
-│       ├── exchange_test.go    # Tests for exchange logic
-│       ├── rates_cache.go      # Exchange rates cache
-│       └── rates_cache_test.go # Cache tests
-├── model/
-│   └── currency/
-│       ├── currency.go         # Currency domain model
-│       └── currency_codes.go   # Supported currency codes
-├── ui/
-│   └── ui.go                   # Simple CLI
-└── utils/
-    └── format/
-        ├── format.go           # Formatting helpers
-        └── format_test.go      # Formatting tests
-```
-
-
 ## Usage
 
 ![img.png](assets/app.png)
